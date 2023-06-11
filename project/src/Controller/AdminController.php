@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\MarkdownHelper\MarkdownHelper;
+use Michelf\Markdown;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdminController extends AbstractController
 {
     /**
@@ -15,6 +17,7 @@ class AdminController extends AbstractController
      */
     public function dashboard(ChartBuilderInterface $chartBuilder)
     {
+
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
             'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -54,4 +57,21 @@ class AdminController extends AbstractController
             'chart2' => $chart2,
         ]);
     }
+    /**
+     * @Route("/admin/login")
+     */
+    public function adminLogin(): Response
+    {
+        return new Response('Pretend admin login page that should be public');
+    }
+
+    /**
+     * @Route("/admin/answer")
+     */
+    public function answerLogin(): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_COMMENT_ADMIN');
+        return new Response('Pretend answer admin page');
+    }
+
 }

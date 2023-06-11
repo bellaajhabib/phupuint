@@ -13,7 +13,8 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-1">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-1"
+        {{ is_granted('ROLE_PREVIOUS_ADMIN')?'style="background-color:red !important"' }}>
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_homepage') }}">
                     <p class="pl-2 d-inline font-weight-bold" style="color: #444;">
@@ -32,9 +33,40 @@
                             <a class="nav-link" href="{{ path('app_popular_answers') }}">Answers</a>
                         </li>
                     </ul>
+                   {%  if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                       <div class="dropdown">
+                           <button
+                                   class="dropdown-toggle btn"
+                                   type="button"
+                                   id="user-dropdown"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false"
+                           >
+                               <img
+                                       src="https://ui-avatars.com/api/?name={{app.user.firstName|url_encode}}"
+                                       alt="{{ app.user.firstName }}">
+                           </button>
+                           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                               {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                   <li>
+                                       <a class="dropdown-item" href="{{ path('app_homepage', {
+                                           '_switch_user': '_exit'
+                                       }) }}">Exit Impersonation</a>
+                                   </li>
+                               {% endif %}
+                               <li>
+                                   <a class="dropdown-item" href="{{ path('app_homepage') }}">Enble 2fa</a>
+                               </li>
+                               <li>
+                                   <a class="dropdown-item" href="{{ path('app_logout') }}">Log Out</a>
+                               </li>
+                           </ul>
+                       </div>
 
-                    <a href="" class="btn btn-dark">Sign up</a>
-                    <a href="{{ path('app_login') }}" class="btn btn-dark"> up</a>
+                    {%  else %}
+                        <a href="" class="btn btn-dark" href="{{ path('app_login') }}">Log up</a>
+                    {% endif %}
+
                 </div>
             </div>
         </nav>

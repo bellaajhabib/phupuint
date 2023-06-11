@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class QuestionController extends AbstractController
 {
@@ -32,6 +33,7 @@ class QuestionController extends AbstractController
      */
     public function homepage(QuestionRepository $repository, int $page = 1)
     {
+
         $queryBuilder = $repository->createAskedOrderedByNewestQueryBuilder();
 
         $pagerfanta = new Pagerfanta(new QueryAdapter($queryBuilder));
@@ -45,9 +47,11 @@ class QuestionController extends AbstractController
 
     /**
      * @Route("/questions/new")
+     *  @IsGranted("ROLE_ADMIN")
      */
     public function new()
     {
+
         return new Response('Sounds like a GREAT feature for V2!');
     }
 

@@ -11,6 +11,7 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
+     *
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -19,5 +20,13 @@ class SecurityController extends AbstractController
             'error' => $authenticationUtils->getLastAuthenticationError(),
             'last_username' => $authenticationUtils->getLastUsername(),
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout(): Response
+    {
+        throw new \Exception('logout should never be reached');
     }
 }

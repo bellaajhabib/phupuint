@@ -102,6 +102,16 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/password-hasher" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/security-http" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/security-core" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/cebe/markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/form" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/validator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
