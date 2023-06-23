@@ -33,7 +33,7 @@ class QuestionController extends AbstractController
      */
     public function homepage(QuestionRepository $repository, int $page = 1)
     {
-
+        $this->logger->info('A execute Question Controller');
         $queryBuilder = $repository->createAskedOrderedByNewestQueryBuilder();
 
         $pagerfanta = new Pagerfanta(new QueryAdapter($queryBuilder));
@@ -68,7 +68,17 @@ class QuestionController extends AbstractController
             'question' => $question,
         ]);
     }
+    /**
+     * @Route("/edit/{slug}", name="app_question_edit")
+     */
+    public function edit (Question $question)
+    {
+        $this->denyAccessUnlessGranted('EDIT',$question);
 
+        return $this->render('question/edit.html.twig', [
+            'question' => $question,
+        ]);
+    }
     /**
      * @Route("/questions/{slug}/vote", name="app_question_vote", methods="POST")
      */

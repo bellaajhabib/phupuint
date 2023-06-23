@@ -39,6 +39,10 @@ final class AnswerFactory extends ModelFactory
     {
         return $this->addState(['status' => Answer::STATUS_NEEDS_APPROVAL]);
     }
+    public function span(): self
+    {
+        return $this->addState(['status' => Answer::STATUS_SPAM]);
+    }
 
     protected function getDefaults(): array
     {

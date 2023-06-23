@@ -17,9 +17,21 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        UserFactory::createOne([
+        'email'=>'abarca_admin@example.com',
+        'roles'=>['ROLE_ADMIN'],
+         ]);
+        UserFactory::createOne([
+            'email'=>'abarca_user@example.com',
+        ]);
+        UserFactory::createMany(10);
         TagFactory::createMany(100);
 
-        $questions = QuestionFactory::createMany(20);
+        $questions = QuestionFactory::createMany(20,function (){
+            return [
+                'owner'=>UserFactory::random(),
+            ];
+        });
 
         QuestionTagFactory::createMany(100, function() {
             return [
@@ -30,7 +42,7 @@ class AppFixtures extends Fixture
 
         QuestionFactory::new()
             ->unpublished()
-            ->many(5)
+            ->many(20)
             ->create()
         ;
 
@@ -44,14 +56,12 @@ class AppFixtures extends Fixture
                 'question' => $questions[array_rand($questions)]
             ];
         })->needsApproval()->many(20)->create();
-        UserFactory::createOne([
-            'email'=>'abarca_admin@example.com',
-            'roles'=>['ROLE_ADMIN'],
-        ]);
-        UserFactory::createOne([
-            'email'=>'abarca_user@example.com',
-        ]);
-        UserFactory::createMany(10);
+        AnswerFactory::new(function() use ($questions) {
+            return [
+                'question' => $questions[array_rand($questions)]
+            ];
+        })->span()->many(20)->create();
+
         $manager->flush();
     }
 }

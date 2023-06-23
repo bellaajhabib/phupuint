@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -45,6 +49,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var
      */
     private $plainPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="owner")
+     */
+    private $no;
+
+    public function __construct()
+    {
+        $this->no = new ArrayCollection();
+    }
 
 
 
@@ -176,5 +190,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getDisplayName(): string{
 
         return $this->getFirstName()?: $this->getEmail();
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getNo(): Collection
+    {
+        return $this->no;
+    }
+
+    public function addNo(Question $no): self
+    {
+        if (!$this->no->contains($no)) {
+            $this->no[] = $no;
+            $no->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNo(Question $no): self
+    {
+        if ($this->no->removeElement($no)) {
+            // set the owning side to null (unless already changed)
+            if ($no->getOwner() === $this) {
+                $no->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 }
