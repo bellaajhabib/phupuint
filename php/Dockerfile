@@ -2,8 +2,7 @@ FROM php:7.4-apache
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
       && pecl install xdebug-2.9.2 \
-      && docker-php-ext-enable xdebug
-\
+      && docker-php-ext-enable xdebug\
     &&  apt-get update \
     &&  apt-get install -y --no-install-recommends \
         locales apt-utils git libicu-dev g++ libpng-dev libxml2-dev libzip-dev libonig-dev libxslt-dev unzip \
