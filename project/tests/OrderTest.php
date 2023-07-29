@@ -12,7 +12,7 @@ class OrderTest extends TestCase
           $mock_order = $this ->getMockBuilder("Order")->disableOriginalConstructor()
                              ->setMethods(['getCountProcess','countProcess'])
                              ->getMock();
-          $mock_order->expects($this->any())->method('countProcess')->willReturn(2);
+          $mock_order->expects($this->any())->method('getCountProcess')->willReturn(2);
 
 
       $mock_payment->expects($this->any())->method('charge')->with($this->equalTo(400))->willReturn(true);
@@ -25,5 +25,18 @@ class OrderTest extends TestCase
       $this->assertTrue($order->process());
       $this->assertEquals('valid_ip',$order->checkProcess());
         $this->assertSame($order->getCountProcess(),$mock_order->getCountProcess());
+  }
+
+  public function testOrderIsProcessdUsingMockery(){
+         $gateway =  Mockery::mock('PaymentGateway');
+
+         $gateway->shouldReceive('charge')
+                 ->once()
+                 ->with(200)
+                 ->andReturn(true);
+
+         $order = new Order($gateway);
+         $order->amount = 200;
+         $this->assertTrue($order->process());
   }
 }
