@@ -6,7 +6,10 @@ class ItemChild extends Item
     {
         return parent::getID();
     }
-
+    public function getSumArray(array $data)
+    {
+        return parent::getAverageSum($data);
+    }
     /**
      * @throws ReflectionException
      */
@@ -17,6 +20,9 @@ class ItemChild extends Item
         $method = $reflector->getMethod('getToken');
         $method->setAccessible(true);
         $method->invoke($item);
+
         return $method;
     }
+
+
 }

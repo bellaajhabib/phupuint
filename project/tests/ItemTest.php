@@ -35,4 +35,32 @@ class ItemTest extends TestCase
         $this->assertIsString($result);
          $this->assertGreaterThanOrEqual(0,(int)$result);
     }
+        public function testPrefixedTokenStartsWithPrefix()
+    {
+        $item = new Item();
+
+        $reflector = new ReflectionClass(Item::class);
+
+        $method = $reflector->getMethod('getPrefixedToken');
+        $method->setAccessible(true);
+        $result = $method->invokeArgs($item, ['example','go']);
+        $this->assertStringStartsWith('example', $result);
+        $this->assertStringEndsWith('go', $result);
+    }
+      public function testSumArray()
+      {
+          $item = new ItemChild;
+          $result = $item->getSumArray([20,40]);
+          $this->assertEquals(60, $result);
+      }
+
+            public function testIdAndInteger()
+      {
+         $item = new Item;
+         $reflection = new ReflectionClass(Item::class);
+         $property = $reflection->getProperty('productId');
+         $property->setAccessible(true);
+         $value = $property->getValue($item);
+         $this->assertIsInt($value);
+      }
 }

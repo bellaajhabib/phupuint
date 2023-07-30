@@ -1,74 +1,67 @@
 <?php
+
 /**
  * User
  *
- * A user of the system
+ * An example user class
  */
-
 class User
 {
 
     /**
-     * First name
+     * Email address
      * @var string
      */
-    public $first_name;
-    
-    /**
-     * Last name
-     * @var string
-     */
-    public $surname;
+    public $email;
 
     /**
-     * @var string
-     */
-    public string $email;
-    /**
+     * Mailer object
      * @var Mailer
      */
-    protected Mailer $mailer;
-     protected int $count = 0;
+    protected $mailer;
+    
     /**
-     * @param Mailer $mailer
-     */
-    public function setMailer(Mailer $mailer): void
-    {
-        $this->mailer = $mailer;
-    }
-    /**
-     * Get the user's full name from their first name and surname
+     * Constructor
      *
-     * @return string The user's full name
+     * @param string $email The user's email
+     *
+     * @return void
      */
-    public function getFullName()
+    public function __construct(string $email)
     {
-        return trim("$this->first_name $this->surname");
+        $this->email = $email;
     }
 
-    public function notify($message): bool
+    /**
+     * Mailer setter
+     *
+     * @param Mailer $mailer A Mailer object
+     *
+     * @return void
+     */
+    public function setMailer(Mailer $mailer) {
+        $this->mailer = $mailer;        
+    }
+    
+    /**
+     * Send the user a message
+     *
+     * @param string $message The message
+     *
+     * @return boolean
+     */
+    public function notify(string $message)
     {
-        return $this->mailer->sendMessage($this->email, $message);
+
+        return $this->mailer->send($this->email, $message);
     }
 
-    public function getGreeting()
-    {
-        return "Hello!";
-    }
-
-    public function getFarewell()
-    {
-        return "Bye!";
-    }
-
-
-    public function increment()
-    {
-        $this->count++;
-    }
-
-    public function getCount(): int
-    {
-        return $this->count;
+        public function notifyStaticCall(string $message): bool
+        {
+        return Mailer::send($this->email, $message);
     }
 }
+
+
+
+

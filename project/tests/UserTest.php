@@ -16,4 +16,24 @@ class UserTest extends \PHPUnit\Framework\TestCase
  public function testNotificationIsSent(){
      $user = new User();
  }
+
+     public function testNotifyReturnsTrue()
+    {
+        $gateway =  Mockery::mock('Mailer');
+        $gateway->shouldReceive('send')
+             ->with('88')
+                 ->andReturn(true);
+         $user = new User('dave@example.com');
+        $user->setMailer($gateway);
+
+        $this->assertTrue($user->notify('Hello!'));
+    }
+      public function testNotifyStaticReturnsTrue()
+    {
+               $user = new User('dave@example.com');
+               $mock  = Mockery::mock('alias:Mailer');
+               $mock->shouldReceive('send')->once()->with($user->email, 'Hemm');
+               $this->assertTrue($user->notifyStaticCall('Hemm'));
+
+    }
 }

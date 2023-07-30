@@ -7,6 +7,12 @@
  */
 class Item
 {
+    private $productId;
+
+    public function __construct()
+    {
+        $this->productId = rand(1,20);
+    }
 
     /**
      * Get the description
@@ -36,5 +42,20 @@ class Item
     private function getToken(): string
     {
         return uniqid();
+    }
+
+    /**
+     * @param string $prefix
+     * @param string $go
+     * @return string
+     */
+    private function getPrefixedToken(string $prefix, string $go): string
+    {
+        return uniqid($prefix).$go;
+    }
+
+    protected function getAverageSum(array $data)
+    {
+      return array_sum($data);
     }
 }
