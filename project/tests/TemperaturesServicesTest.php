@@ -31,7 +31,6 @@ class TemperaturesServicesTest extends \PHPUnit\Framework\TestCase
 
         public function testCorrectDivIsReturnedWithMpocker(){
         $service = Mockery::mock(TemperatureService::class);
-        $service->shouldReceive('div')->once()->with(10,5)->andReturn(2);
        //$service->shouldReceive('div')->once()->with(20,2)->andReturn(5);
 
          $weather = new WeatherMonitor($service);

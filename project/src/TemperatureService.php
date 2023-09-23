@@ -25,4 +25,8 @@ class TemperatureService
     public function div ($a,$b){
     return $a/$b;
     }
+
+       public function getFileName ($v1,$v2){
+        return $v1 . "-" . $v2;
+    }
 }

@@ -19,16 +19,12 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/doctrine-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/data-fixtures" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/common" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/collections" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/doctrine/annotations" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/type-resolver" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/reflection-docblock" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/friendsofphp/proxy-manager-lts" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/api-platform/core" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/willdurand/negotiation" />
@@ -42,7 +38,6 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/web-profiler-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/zenstruck/assert" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/web-link" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/var-exporter" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/fakerphp/faker" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/var-dumper" />
@@ -134,18 +129,21 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/phpunit" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-token-stream" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-timer" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-text-template" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-file-iterator" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-code-coverage" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpstan/phpdoc-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpspec/prophecy" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/code-unit" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/phpunit/php-invoker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

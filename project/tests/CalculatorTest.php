@@ -9,7 +9,9 @@ public function testAdd()
         $mathServiceMock = $this->getMockBuilder(MathService::class)
             ->getMock();
 
+
         // Define the method call-return value map for the mock
+
         $mathServiceMock->method('add')
             ->will($this->returnValueMap([
                 [2, 3, 5],

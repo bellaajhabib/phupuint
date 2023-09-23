@@ -58,4 +58,12 @@ class Queue
     {
         return count($this->items);
     }
+   public function clear(){
+    $this->items = [];
+   }
+       public function merged(array $array)
+    {
+        $this->items = array_merge($this->items,$array);
+        return $this->items;
+    }
 }

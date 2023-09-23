@@ -18,7 +18,7 @@ class Mailer
      *
      * @return boolean
      */
-    public function send(string $email, string $message)
+    public static function  send(string $email, string $message)
     {
         if (empty($email)) {
             throw new InvalidArgumentException;
@@ -27,5 +27,18 @@ class Mailer
         echo "Send '$message' to $email";
 
         return true;
+    }
+        public function sendMessage(string $email, string $message)
+    {
+        sleep(3);
+
+        echo "Send '$message' to $email";
+
+        return true;
+    }
+
+    public function add(int $a, int $b)
+    {
+        return $a + $b;
     }
 }

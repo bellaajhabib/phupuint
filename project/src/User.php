@@ -3,65 +3,56 @@
 /**
  * User
  *
- * An example user class
+ * A user of the system
  */
 class User
 {
 
     /**
-     * Email address
+     * First name
      * @var string
      */
-    public $email;
+    public $first_name;
 
     /**
+     * Last name
+     * @var string
+     */
+    public $surname;
+    /**
+     * @var string
+     */
+    public $mail;
+/**
      * Mailer object
      * @var Mailer
      */
     protected $mailer;
-    
-    /**
-     * Constructor
-     *
-     * @param string $email The user's email
-     *
-     * @return void
-     */
-    public function __construct(string $email)
-    {
-        $this->email = $email;
-    }
 
     /**
-     * Mailer setter
+     * Set the mailer dependency
      *
-     * @param Mailer $mailer A Mailer object
-     *
-     * @return void
+     * @param Mailer $mailer The Mailer object
      */
     public function setMailer(Mailer $mailer) {
-        $this->mailer = $mailer;        
+        $this->mailer = $mailer;
     }
-    
     /**
-     * Send the user a message
+     * Get the user's full name from their first name and surname
      *
-     * @param string $message The message
-     *
-     * @return boolean
+     * @return string The user's full name
      */
-    public function notify(string $message)
+    public function getFullName()
     {
-
-        return $this->mailer->send($this->email, $message);
+        return trim("$this->first_name $this->surname");
     }
+      public function add(int $a, int $b): int
+    {
+        return $a + $b;
+    }
+    public function notifyMail($message){
 
-        public function notifyStaticCall(string $message): bool
-        {
-        return Mailer::send($this->email, $message);
+
+       return $this->mailer->sendMessage($this->mail,$message);
     }
 }
-
-
-
-

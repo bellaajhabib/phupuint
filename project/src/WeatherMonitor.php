@@ -49,4 +49,10 @@ class WeatherMonitor
 
        return $div;
     }
+
+      public function getFileNameServices($a, $b)
+    {
+
+       return  $this->service->getFileName($a,$b);
+    }
 }

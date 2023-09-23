@@ -28,15 +28,30 @@ class OrderTest extends TestCase
   }
 
   public function testOrderIsProcessdUsingMockery(){
-         $gateway =  Mockery::mock('PaymentGateway');
-
-         $gateway->shouldReceive('charge')
-                 ->once()
-                 ->with(200)
-                 ->andReturn(true);
-
+         $gateway =  $this->getMockBuilder('PaymentGateway')
+                           ->setMethods(["charge","check"])
+                            ->getMock();
+         $gateway->expects($this->once())->method('charge')
+               ->with($this->equalTo(200))->willReturn(true);
+       $gateway->expects($this->any())->method('check')
+               ->with($this->equalTo('127.0.0.1'))
+               ->willReturn('A valid IP address');
          $order = new Order($gateway);
          $order->amount = 200;
+         $order->ip = '127.0.0.1';
+         $order->countProcess();
+         $order->countProcess();
+          $this->assertEquals('A valid IP address', $order->checkProcess());
+          $this->assertEquals($order->getCountProcess(), 2);
          $this->assertTrue($order->process());
+
+//         $gateway->shouldReceive('charge')
+//                 ->once()
+//                 ->with(200)
+//                 ->andReturn(true);
+//
+//         $order = new Order($gateway);
+//         $order->amount = 200;
+//         $this->assertTrue($order->process());
   }
 }
