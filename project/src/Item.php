@@ -31,4 +31,15 @@ class Item
     {
         return uniqid();
     }
+       /**
+     * Get a random token with a specified prefix
+     *
+     * @param string $prefix token prefix
+     *
+     * @return string The token
+     */
+    private function getPrefixedToken(string $prefix)
+    {
+        return uniqid($prefix);
+    }
 }
